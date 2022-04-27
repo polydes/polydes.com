@@ -1,17 +1,4 @@
 /*
-Older colors for a green theme.
-:root {
-  --accent: hsl(130, 75%, 40%);
-  --accent-mg: hsl(130, 100%, 90%);
-  --accent-bg: hsl(130, 100%, 98%);
-  --code: hsl(230, 78%, 48%);
-  --code-bg: hsl(230, 100%, 98%);
-  --button-bg: hsl(130, 70%, 35%);
-}
-
-*/
-
-/*
 Basic theme customization of simple.css to match prism.js better
 
 light tan #f5f2f0
@@ -56,31 +43,6 @@ body > header > .breadcrumb {
   line-height: 1;
 }
 
-/* Old: ??? */
-
-/*.detail-grid {
-  display: inline-grid;
-  grid-template-columns: 48px auto;
-  grid-template-areas:
-    "icon title";
-  grid-column-gap: 10px;
-  vertical-align: middle;
-}
-.detail-grid > .icon {
-  grid-area: icon;
-  align-self: center;
-}
-.detail-grid > .title {
-  grid-area: title;
-  align-self: center;
-  font-weight: bold;
-}*/
-/*.detail-grid > .buttonbar {
-  grid-area: buttonbar;
-  justify-self: end;
-  align-self: center;
-}*/
-
 /* Featured item listings */
 
 .feature-list {
@@ -110,54 +72,8 @@ body > header > .breadcrumb {
   margin: 10px;
 }
 
-/* Old: for embedding buttons inside a feature card
-
-.buttonbar button {
-  border-radius: 3px;
-  font-weight: normal;
-  margin: 0px;
-  padding: 2px 5px 2px 5px;
-}
-*/
-
-/* Old: was using sl-card component
-
-sl-card > div[slot="header"] > img {
-  vertical-align: middle;
-}
-*/
-
-/* Old: was using details for featured extension listing
-
-details > summary img {
-  vertical-align: middle;
-}
-details > summary button {
-  /*float: right;*//*
-  vertical-align: middle;
-  padding: .4em;
-}
-details > summary button > img {
-  height: 2rem;
-}
-*/
-
-/* Old: ??
-
-.detail-grid button {
-  vertical-align: middle;
-  padding: .4em;
-}
-.detail-grid button > img {
-  height: 2rem;
-}
-*/
-
 /* Make extension versions table more compact then the default simple.css table */
 
-/*.version-table tr:nth-child(even) {
-  background: var(--accent-mg);
-}*/
 .version-table {
   font-size: 1.05rem;
   line-height: 1.2;
