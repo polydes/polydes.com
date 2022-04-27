@@ -1,0 +1,90 @@
+{% import "macros.html" as macros %}
+
+{% extends "base.html" %}
+
+{% block styles %}
+<link rel="stylesheet" href="/toc/toc-style.css" />
+{% endblock styles %}
+
+{% block header %}
+{% set this = page | default (value=section) %}
+{% if this.ancestors.3 %}{% set ext = get_section(path=this.ancestors.3, metadata_only=true) %}{% else %}{% set ext = this %}{% endif %}
+<h1>
+  <img style="height:2.3rem;" src="{{ ext.extra.base_url | safe }}/icon.png" /> {{ ext.title }}
+</h1>
+{% endblock header %}
+
+{% block sidebar %}
+{% set sidebar = get_page(path=ext.path~"_sidebar.md" | trim_start_matches(pat="/")) %}
+
+<div class="sidebar">
+  <ul>
+    <li>
+      <span class="title">{{ ext.title }}</span>
+      <ul>
+        {{ macros::navlink(target=ext.permalink, label="Home") }}
+        {% if sidebar.extra.nav.section.zero %}{% for navItem in sidebar.extra.nav.section.zero %}
+        {% if navItem.page %}
+        {% set targetPage = get_page(path=ext.path~navItem.page~".md" | trim_start_matches(pat="/")) %}
+        {{ macros::navlink(target=targetPage.permalink, label=targetPage.title) }}
+        {% elif navItem.absolute %}
+        <li><a href="{{ navItem.absolute | safe }}" class="external_link">{{ navItem.title }}</a></li>
+        {% elif navItem.relative %}
+        {{ macros::navlink(target=ext.permalink~navItem.relative, label=navItem.title) }}
+        {% endif %}
+        {% endfor %}{% endif %}
+        {{ macros::navlink(target=ext.permalink~"install", label="Installation") }}
+        {{ macros::navlink(target=ext.permalink~"versions", label="Versions") }}
+      </ul>
+    </li>
+    {% if sidebar.extra.nav.sections %}{% for navSection in sidebar.extra.nav.sections %}
+      <span class="title">{{ navSection.title }}</span>
+      <ul>
+        {% for navItem in sidebar.extra.nav.section[navSection.group] %}
+        {% if navItem.page %}
+        {% set targetPage = get_page(path=ext.path~navItem.page~".md" | trim_start_matches(pat="/")) %}
+        {{ macros::navlink(target=targetPage.permalink, label=targetPage.title) }}
+        {% elif navItem.absolute %}
+        <li><a href="{{ navItem.absolute | safe }}" class="external_link">{{ navItem.title }}</a></li>
+        {% elif navItem.relative %}
+        {{ macros::navlink(target=ext.permalink~navItem.relative, label=navItem.title) }}
+        {% endif %}
+        {% endfor %}
+      </ul>
+    {% endfor %}{% endif %}
+  </ul>
+</div>
+
+{% if page.toc %}
+<script src="/toc/toc-scroller.js"></script>
+<div class="section-nav-wrapper"><div class="section-nav">
+  On this page:
+  <ol>
+    {% for h1 in page.toc %}
+      <li>
+        <a href="#{{ h1.id }}">{{ h1.title }}</a>
+        {% if h1.children %}
+          <ul>
+            {% for h2 in h1.children %}
+              <li>
+                <a href="#{{ h2.id }}">{{ h2.title }}</a>
+                {% if h2.children %}
+                  <ul>
+                    {% for h3 in h2.children %}
+                      <li>
+                        <a href="#{{ h3.id }}">{{ h3.title }}</a>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ol>
+</div></div>
+{% endif %}
+
+{% endblock sidebar %}

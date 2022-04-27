@@ -1,0 +1,26 @@
+<div class="sidebar">
+  <ul>
+    <li>
+      <span class="title">{{ ext.title }}</span>
+      <ul>
+        {{ macros::navlink(page=ext, url="", label="Home") }}
+        {% if ext.extra.urls %}{% for url in ext.extra.urls %}
+        <li><a href="{{ url.link | safe }}" class="external_link">{{ url.label }}</a></li>
+        {% endfor %}{% endif %}
+        {{ macros::navlink(page=ext, url="install", label="Installation") }}
+        {{ macros::navlink(page=ext, url="versions", label="Versions") }}
+      </ul>
+    </li>
+    {% for extSection in ext.subsections %}
+    {% set extSection = get_section(path=extSection, metadata_only=false) %}
+    <li>
+      <span class="title">{{ extSection.title }}</span>
+      <ul>
+        {% for extPage in extSection.pages %}
+        {{ macros::navlink(page=extPage, url="", label=extPage.title) }}
+        {% endfor %}
+      </ul>
+    </li>
+    {% endfor %}
+  </ul>
+</div>

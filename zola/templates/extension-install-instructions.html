@@ -1,0 +1,72 @@
+{% extends "extension-base.html" %}
+
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="/install-instructions/install-instructions.css" />
+{% endblock styles %}
+
+{% block main %}
+
+{% set this_repo_section = get_section(path=page.ancestors.1, metadata_only=true) %}
+{% set category = page.components.1 %}
+
+<h2>Installing / upgrading within Stencyl</h2>
+
+<ol>
+  <li>
+    <p>In Stencyl's menu bar, click <b>Extensions > Get Extensions</b>.</p>
+    <img src="/install-instructions/get-extensions.png" />
+  </li>
+  <li>
+    <p>Enable external repositories if needed, and add the <code>{{ this_repo_section.extra.repo_url }}</code> repository.</p>
+    <div class="addRepoImage">
+      <img src="/install-instructions/add-repository.png" />
+      <span class="repoUrl">{{ this_repo_section.extra.repo_url }}</span>
+    </div>
+  </li>
+  <li>
+    <p>Install "{{ ext.extra.extension_name }}".</p>
+    <div class="installExtensionImage">
+      <img src="/install-instructions/install-extension.png" />
+      <span class="category">{{ this_repo_section.extra.repo_url }} - {{ category }} extensions</span>
+      <img class="icon" src="{{ ext.extra.base_url | safe }}/icon.png" />
+      <div class="details">
+        <span class="name">{{ ext.extra.extension_name }}</span>
+        <span class="author">({{ ext.extra.extension_author }})</span><br/>
+        <span class="description">{{ ext.extra.extension_description }}</span>
+      </div>
+    </div>
+  </li>
+</ol>
+
+<h2>Manual Installation</h2>
+
+<ol>
+  <li>Download the desired version from the <a href="{{ ext.permalink | safe }}versions">versions</a> page.</li>
+  {% if category == "toolset" %}
+  <li>In Stencyl's menu bar, navigate to <b>Tools > View Folder > Workspace Folder</b>.</li>
+  <li>Extract <code>{{ ext.extra.extension_id }}.jar</code> from the downloaded <code>.zip</code> file, and move it into the <code>extensions</code> folder in the Stencyl workspace.</li>
+  <pre class="language-none">
+stencylworks/
+└─extensions/
+  └─{{ ext.extra.extension_id }}.jar
+  </pre>
+  {% else %}
+  <li>In Stencyl's menu bar, navigate to <b>Tools > View Folder > Workspace Folder</b>.</li>
+  <li>Extracting the downloaded <code>.zip</code> file will result in a <code>{{ ext.extra.extension_id }}</code> folder that contains <code>info.txt</code>, among other files. Move that folder into the <code>engine-extensions</code> folder in the Stencyl workspace.
+  <pre class="language-none">
+stencylworks/
+└─engine-extensions/
+  └─{{ ext.extra.extension_id }}/
+    ├─blocks.xml
+    ├─include.xml
+    ├─info.txt
+  </pre>
+  </li>
+  {% endif %}
+  <li>Close Stencyl and open it again.</li>
+</ol>
+
+{{ page.content }}
+
+{% endblock main %}

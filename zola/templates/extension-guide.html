@@ -1,0 +1,8 @@
+{% extends "extension-base.html" %}
+
+{% block main %}
+
+{% set this = page | default (value=section) %}
+{{ this.content | safe }}
+
+{% endblock main %}

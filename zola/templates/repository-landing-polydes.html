@@ -1,0 +1,35 @@
+{% extends "repository-landing.html" %}
+
+{% block header %}
+<h1>
+  <img style="height:2.3rem;" src="/logo.png" /> Polydes · Stencyl Extensions
+</h1>
+{% endblock header %}
+
+{% block about_repo %}
+<details>
+  <summary>About Polydes - community extensions</summary>
+  <p>
+    Polydes is a collection of open source <a href="https://www.stencyl.com/">Stencyl</a> extensions.
+  </p>
+  <p>
+    The name Polydes is a throwback to "Polyhedron Designs", a semi-official but short-lived Stencyl game production group from 2007 composed of community members. While a number of impressive Nintendo title knock-offs and original titles were lined up, I don't recall that any games were actually released.
+  </p>
+  <p>
+    The community spirit of that group led me to reclaim the name. I'd like to view these extensions as the <i>Stencyl community's</i> extensions. That's why I packaged them all under the name Polydes, instead of using my own name.
+  </p>
+  <p>
+    The source of the name also explains why the logo is a small stellated dodecahedron, a type of polyhedron.
+  </p>
+</details>
+{% endblock about_repo %}
+
+{% block additional_content %}
+<h4>Additional Content</h4>
+<details>
+  <summary><img src="http://www.polydes.com/repo/v3/toolset/com.polydes.dialog/icon.png" /> Dialog Extension Sample Game <a href="http://polydes.com/3.4.0-extensions/sample-games/dialog-extension-sample.stencyl"><button>Download</button></a></summary>
+  <p>
+    A sample game that shows how to use the Dialog Extension.
+  </p>
+</details>
+{% endblock additional_content %}

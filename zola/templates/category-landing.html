@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block header %}
+{% if page %}{% set this = page %}{% elif section %}{% set this = section %}{% endif %}
+<h1>
+  {{ this.title }}
+</h1>
+{% endblock header %}
+
+{% block main %}
+
+{# {% set extension_list = load_data(path=this.extra.data_path~"/list.json") -%} #}
+
+<!--<table>
+  <tr>
+    <td>Name</td>
+    <td>Description</td>
+  </tr>
+{# {% for extension in extension_list.extensions %} #}
+{% for extensionPath in section.subsections %}
+{% set extensionSection = get_section(path=extensionPath, metadata_only=true) %}
+  <tr>
+    <td><img class="icon" src="{{ extensionSection.extra.base_url | safe }}/icon.png" /> <a href="{{ extensionSection.permalink }}">{{ extensionSection.title }}</a></td>
+    <td>{{ extensionSection.extra.blurb }}</td>
+  </tr>
+{% endfor %}
+</table>-->
+
+<div class="feature-list">
+{% for extensionPath in section.subsections %}
+{% set extensionSection = get_section(path=extensionPath, metadata_only=true) %}
+<div class="feature-item">
+  <div class="feature-item-header">
+    <img class="icon" src="{{ extensionSection.extra.base_url | safe }}/icon.png" />
+    <span class="title"><a href="{{ extensionSection.permalink | safe }}">{{ extensionSection.title }}</a></span>
+  </div>
+  <div class="feature-item-body">
+    <p>
+      {{ extensionSection.extra.blurb }}
+    </p>
+  </div>
+</div>
+{% endfor %}
+</div>
+
+{% endblock main %}

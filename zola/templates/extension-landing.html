@@ -1,0 +1,9 @@
+{% extends "extension-base.html" %}
+
+{% block main %}
+
+{% set this_repo_section = get_section(path=section.ancestors.1, metadata_only=true) %}
+
+{{ section.content | safe }}
+
+{% endblock main %}

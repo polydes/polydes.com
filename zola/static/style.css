@@ -1,0 +1,237 @@
+/*
+Older colors for a green theme.
+:root {
+  --accent: hsl(130, 75%, 40%);
+  --accent-mg: hsl(130, 100%, 90%);
+  --accent-bg: hsl(130, 100%, 98%);
+  --code: hsl(230, 78%, 48%);
+  --code-bg: hsl(230, 100%, 98%);
+  --button-bg: hsl(130, 70%, 35%);
+}
+
+*/
+
+/*
+Basic theme customization of simple.css to match prism.js better
+
+light tan #f5f2f0
+pastel tan #dcbfac
+tan #c29171
+
+light purple #f2f0f5
+pastel purple #bfacdc
+purple #9171c2
+
+light green #f0f5f3
+pastel green #acdcc9
+green #71c2a1
+*/
+
+:root {
+  --accent: #c29171;
+  --accent-mg: #f1e8e1;
+  --accent-bg: #f5f2f0;
+  --code: #000;
+  --code-bg: #f5f2f0;
+  --button-bg: #9171c2;
+  --link-color: #9171c2;
+}
+code {
+  background: var(--code-bg);
+}
+button {
+  background: var(--button-bg);
+}
+a, a:visited {
+    color: var(--link-color);
+}
+
+/* decrease header padding for breadcrumb */
+body > header {
+  padding: 0 0.5rem 0.5rem 0.5rem;
+}
+body > header > .breadcrumb {
+  text-align: left;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+/* Old: ??? */
+
+/*.detail-grid {
+  display: inline-grid;
+  grid-template-columns: 48px auto;
+  grid-template-areas:
+    "icon title";
+  grid-column-gap: 10px;
+  vertical-align: middle;
+}
+.detail-grid > .icon {
+  grid-area: icon;
+  align-self: center;
+}
+.detail-grid > .title {
+  grid-area: title;
+  align-self: center;
+  font-weight: bold;
+}*/
+/*.detail-grid > .buttonbar {
+  grid-area: buttonbar;
+  justify-self: end;
+  align-self: center;
+}*/
+
+/* Featured item listings */
+
+.feature-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+}
+.feature-item {
+  background: var(--accent-bg);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  /*padding: 0px;*/
+}
+.feature-item-header {
+  background: var(--accent-mg);
+  width: 100%;
+  font-weight: bold;
+  border-bottom: 1px solid var(--border);
+}
+.feature-item-header img {
+  vertical-align: middle;
+  margin: 5px;
+}
+.feature-item-body {
+  font-size: 1.05rem;
+  line-height: 1.2;
+  margin: 10px;
+}
+
+/* Old: for embedding buttons inside a feature card
+
+.buttonbar button {
+  border-radius: 3px;
+  font-weight: normal;
+  margin: 0px;
+  padding: 2px 5px 2px 5px;
+}
+*/
+
+/* Old: was using sl-card component
+
+sl-card > div[slot="header"] > img {
+  vertical-align: middle;
+}
+*/
+
+/* Old: was using details for featured extension listing
+
+details > summary img {
+  vertical-align: middle;
+}
+details > summary button {
+  /*float: right;*//*
+  vertical-align: middle;
+  padding: .4em;
+}
+details > summary button > img {
+  height: 2rem;
+}
+*/
+
+/* Old: ??
+
+.detail-grid button {
+  vertical-align: middle;
+  padding: .4em;
+}
+.detail-grid button > img {
+  height: 2rem;
+}
+*/
+
+/* Make extension versions table more compact then the default simple.css table */
+
+/*.version-table tr:nth-child(even) {
+  background: var(--accent-mg);
+}*/
+.version-table {
+  font-size: 1.05rem;
+  line-height: 1.2;
+}
+.version-table ul {
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+  padding-inline-start: 20px;
+  line-height: 1.2;
+}
+
+/* Show an "external link" icon after anchors with the "external_link" class */
+
+a.external_link::after {
+  content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAQElEQVR42qXKwQkAIAxDUUdxtO6/RBQkQZvSi8I/pL4BoGw/XPkh4XigPmsUgh0626AjRsgxHTkUThsG2T/sIlzdTsp52kSS1wAAAABJRU5ErkJggg==);
+  margin: 0 3px 0 5px;
+}
+
+/* Slightly more compact navigation buttons than the default from simple.css */
+
+nav a, nav a:visited {
+  margin: 0 0.5rem 1rem 0;
+  padding: 0.1rem 0.3rem;
+}
+
+/* Fit the sidebar in with existing simple.css content */
+
+body {
+  grid-template-areas:
+    "header  header  header"
+    "left    content right"
+    "footer  footer  footer";
+}
+
+/* Sidebar formatting, based on the Zola documentation sidebar */
+
+.sidebar {
+  grid-area: left;
+  padding-top: 1.5rem;
+  padding-left: 1rem;
+  padding-right: 2rem;
+  justify-self: end;
+}
+
+.sidebar ul {
+  padding-left: 0;
+  list-style: none;
+}
+
+.sidebar > ul > li {
+  margin-bottom: 1rem;
+}
+
+.sidebar > ul ul {
+  margin-top: 0.25rem;
+}
+
+.sidebar > ul ul li {
+  border-left: 1px solid #191919;
+  padding-left: 0.75rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.sidebar .title {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.sidebar > ul ul li.active a {
+  font-weight: bold;
+}
+
+/* Make code blocks more compact so that ascii art can connect */
+code[class*=language-], pre[class*=language-] {
+  line-height: 1 !important;
+}

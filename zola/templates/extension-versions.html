@@ -1,0 +1,26 @@
+{% extends "extension-base.html" %}
+
+{% block main %}
+
+{#{% set notes = get_page(path=ext.path~"_release_notes.md" | trim_start_matches(pat="/")) %}#}
+{% set versions = load_data(path=ext.extra.data_path~"/versions.json") -%}
+
+<h4>Version History / Downloads</h4>
+<table class="version-table">
+  <tr>
+    <td>Version</td>
+    <td>Date</td>
+    <td>Changes</td>
+    <td>Download</td>
+  </tr>
+{% for version in versions.versions | reverse %}
+  <tr>
+    <td>{{ version.version }}</td>
+    <td>{{ version.date }}</td>
+    <td><ul>{#{% if ext.extra.notes[version.version] %}<li><a href="{{ ext.extra.notes[version.version] | safe }}" class="external_link">Release Notes</a></li>{% endif %}#}{% for change in version.changes | split(pat="\n") %}<li>{{ change }}</li>{% endfor %}</ul></td>
+    <td><a href="{{ ext.extra.base_url | safe }}/{{ version.version }}.zip">⬇ {{ version.version }}.zip</a></td>
+  </tr>
+{% endfor %}
+</table>
+
+{% endblock main %}

@@ -1,0 +1,71 @@
+/* https://www.bram.us/2020/01/10/smooth-scrolling-sticky-scrollspy-navigation/ */
+
+.section-nav-wrapper {
+  grid-area: right;
+  
+  /* sticky */
+  position: sticky;
+  top: 0;
+  align-self: start;
+
+  /* padding */
+  padding-right: 1rem;
+  margin-left: 2rem;
+
+  /* scroll bar if the toc is too long */
+  height: 100vh;
+  width: fit-content;
+  overflow-y: auto;
+  /*transform: scaleX(-1);*/
+
+  background: #f5f2f0;
+}
+
+.section-nav {
+  border-left: 1px solid #efefef;
+  padding-left: 1rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  
+  /*transform: scaleX(-1);*/
+}
+
+/* ScrollSpy active styles (see JS tab for activation) */
+.section-nav li.active > a {
+  color: #9171c2;
+  font-weight: bold;
+}
+
+.section-nav a {
+  text-decoration: none;
+  display: block;
+  padding: .125rem 0;
+  color: #bfacdc;
+  transition: all 50ms ease-in-out; /* 💡 This small transition makes setting of the active state smooth */
+}
+
+.section-nav > ol > li > a {
+  font-size: 1.15rem;
+}
+
+.section-nav > ol > li > ul > li > a {
+  font-size: 1rem;
+}
+
+.section-nav > ol > li > ul > li > ul > li > a {
+  font-size: 0.9rem;
+}
+
+.section-nav a:hover,
+.section-nav a:focus {
+  color: #9171c2;
+}
+
+.section-nav ul, .section-nav ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.section-nav li {
+  margin-left: 1rem;
+}

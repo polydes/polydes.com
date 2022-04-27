@@ -1,0 +1,55 @@
+/* Dynamic image for install instructions */
+
+.addRepoImage {
+  position: relative;
+}
+
+.addRepoImage > .repoUrl {
+  position: absolute;
+  top: 198px;
+  left: 185px;
+  font-size: 14px;
+}
+
+.installExtensionImage {
+  position: relative;
+}
+.installExtensionImage > span.category {
+  position: absolute;
+  top: 34px;
+  left: 172px;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: -.5px;
+  color: white;
+}
+.installExtensionImage > img.icon {
+  position: absolute;
+  top: 72px;
+  left: 10px;
+  width: 48px;
+  height: 48px;
+}
+.installExtensionImage > div.details {
+  position: absolute;
+  top: 80px;
+  left: 69px;
+  color: white;
+  line-height: 1rem;
+}
+.installExtensionImage > div.details > span.name {
+  font-size: 19px;
+  font-weight: bold;
+}
+.installExtensionImage > div.details > span.author {
+  font-size: 13px;
+  font-style: italic;
+}
+.installExtensionImage > div.details > span.description {
+  font-size: 12px;
+  letter-spacing: -.5px;
+}
+
+.enableToolsetGameExtensionImage {
+
+}

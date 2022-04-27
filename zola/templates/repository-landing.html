@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% if page %}{% set this = page %}{% elif section %}{% set this = section %}{% endif %}
+
+{% block header %}
+<h1>
+  Stencyl Extensions
+</h1>
+{% endblock header %}
+
+{% block main %}
+{% block about_repo %} {% endblock %}
+
+<!--<details>
+  <summary>Accessing this repository from Stencyl</summary>
+  <p>
+    To access the extensions available from this extension repository,
+    enter this url into the Stencyl toolset.<br/>
+    <ol>
+      <li>Open Stencyl.</li>
+      <li>In the menu bar, navigate to <b>Extensions > Extension Repositories</b>.</li>
+      <li>If needed, enable external repositories.</li>
+      <li>When prompted for an extension repository to add, input this url: <code>{{ this.extra.repo_url }}</code>.</li>
+      <li>Extensions will now be available in the Extension Repositories window to browse and download.</li>
+    </ol>
+  </p>
+</details>
+
+<hr />-->
+
+<h4>Featured Extensions</h4>
+<div class="feature-list">
+{% for feature_item in this.extra.featured_extensions %}
+{% set feature_item_page = get_section(path=this.components.0~"/"~feature_item~"/_index.md", metadata_only=true) %}
+  <div class="feature-item">
+    <div class="feature-item-header">
+      <img class="icon" src="{{ feature_item_page.extra.base_url | safe }}/icon.png" />
+      <span class="title"><a href="{{ feature_item_page.permalink | safe }}">{{ feature_item_page.title }}</a></span>
+    </div>
+    <div class="feature-item-body">
+      <p>
+        {{ feature_item_page.extra.blurb }}
+      </p>
+    </div>
+</div>
+{% endfor %}
+</div>
+
+<hr/>
+<h4>All Extensions</h4>
+
+<div class="feature-list">
+  <div class="feature-item">
+    <div class="feature-item-header">
+      <img class="icon" src="/toolset-extension.png" />
+      <span class="title"><a href="{{ this.permalink | safe }}toolset">All Toolset Extensions</a></span>
+    </div>
+    <div class="feature-item-body">
+      <p>
+        Extend the capabilities of the toolset to make game authoring and distribution a breeze.
+      </p>
+    </div>
+  </div>
+  <div class="feature-item">
+    <div class="feature-item-header">
+      <img class="icon" src="/engine-extension.png" />
+      <span class="title"><a href="{{ this.permalink | safe }}engine">All Engine Extensions</a></span>
+    </div>
+    <div class="feature-item-body">
+      <p>
+        Add new blocks and SDK integrations to the engine.
+      </p>
+    </div>
+  </div>
+</div>
+
+<hr />
+
+<h4>Sponsorship</h4>
+
+<p>
+  If you'd like to help keep these extensions maintained,
+  please consider sponsoring the polydes organization on
+  Github.
+</p>
+
+<a href="https://www.github.com/polydes">
+  <button>🤍 Github Sponsors</button>
+</a>
+
+<hr />
+
+<h4>Contact</h4>
+
+<ul>
+  <li>Discord: <a href="https://discord.gg/XjawJCW">Stencyl Chat</a> (<span style="color: red">@justin#8596</span>)</li>
+  <li>The individual github issue tracker for each extension can be used to file bugs and feature requests</li>
+</ul>
+
+{% endblock main %}

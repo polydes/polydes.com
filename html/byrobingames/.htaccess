@@ -1,0 +1,9 @@
+RewriteEngine On
+
+RewriteCond %{REQUEST_URI} !v1
+RewriteRule .* - [S=5]
+RewriteRule ^(.*)/get/icon$   $1/icon.png [L]
+RewriteRule ^(.*)/get/info$   $1/info.txt [L]
+RewriteRule ^(.*)/get/(.*)$   $1/$2.zip
+RewriteRule ^(.*)/list/$      $1/list.json
+RewriteRule ^(.*)/versions$   $1/versions.json

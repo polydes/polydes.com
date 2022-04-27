@@ -1,0 +1,14 @@
+{% macro navlink(target, label, from_url="") %}
+{% if from_url == "" %}{% set from_url = current_url %}{% endif %}
+<li{% if from_url | trim_end_matches(pat="/") == target | trim_end_matches(pat="/") %} class="active"{% endif %}><a href="{{ target | safe }}">{{ label }}</a></li>
+{% endmacro navlink %}
+
+{% macro breadcrumb_title(node, last=false) %}
+{% if node.extra.breadcrumb_title or node.title %}
+{% if not last %}
+<a href="{{ node.permalink | safe }}">{{ node.extra.breadcrumb_title | default(value=node.title) }}</a> &gt;
+{% else %}
+{{ node.extra.breadcrumb_title | default(value=node.title) }}
+{% endif %}
+{% endif %}
+{% endmacro breadcrumb_title %}
